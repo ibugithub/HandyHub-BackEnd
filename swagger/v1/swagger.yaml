@@ -1,0 +1,198 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/reservations":
+    get:
+      summary: list reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                trade_id:
+                  type: integer
+                date:
+                  type: string
+                  format: date
+                location:
+                  type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/reservations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show reservation
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete reservation
+      responses:
+        '200':
+          description: successful
+  "/api/v1/trades":
+    get:
+      summary: list trades
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create trade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                location:
+                  type: string
+                price:
+                  type: number
+                duration:
+                  type: string
+                trade_type:
+                  type: string
+                user_id:
+                  type: integer
+      responses:
+        '200':
+          description: successful
+  "/api/v1/trades/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show trade
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update trade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                location:
+                  type: string
+                price:
+                  type: number
+                duration:
+                  type: string
+                trade_type:
+                  type: string
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update trade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                location:
+                  type: string
+                price:
+                  type: number
+                duration:
+                  type: string
+                trade_type:
+                  type: string
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete trade
+      responses:
+        '200':
+          description: successful
+  "/signup":
+    post:
+      summary: create registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+      responses:
+        '200':
+          description: successful
+  "/login":
+    post:
+      summary: create session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: successful
+  "/logout":
+    delete:
+      summary: delete session
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

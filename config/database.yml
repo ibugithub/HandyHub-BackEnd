@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: appointments_development
+
+test:
+  <<: *default
+  database: appointments_test
+
+production:
+  <<: *default
+  adapter: "postgresql"
+  encoding: "unicode"
+  database: appointments
+  url: <%= ENV["DATABASE_URL"] %>
+  database: journeycash
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
